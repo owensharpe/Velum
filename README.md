@@ -20,23 +20,25 @@ Velum provides a growing collection of ML and deep learning models, from linear 
 
 ### Available Models (To Be Built)
 
-Classical ML (scikit-learn backend)
+**Classical ML (scikit-learn backend)**
 - Linear Regression
 - Logistic Regression
 - Random Forest
 - Support Vector Machines
 - K-Means Clustering
 - PCA
-- More coming...
 
-Deep Learning (PyTorch backend)
+More coming...
+
+**Deep Learning (PyTorch backend)**
 - MLP (Multilayer Perceptron)
 - CNN (Convolutional Neural Network)
 - LSTM
 - CNN-LSTM
 - Transformer Encoder
 - Autoencoder
-- More coming...
+
+More coming...
 
 I am also hoping to extend this further with RL and search specific models; this will be on hold for now.
 
@@ -46,6 +48,14 @@ git clone https://github.com/yourusername/velum.git
 cd velum
 pip install -e .
 ```
+## Requirements
+- Python 3.9+
+- PyTorch 2.0+
+- scikit-learn 1.0+
+- numpy
+
+More to be added...
+
 
 
 ## Contributing
