@@ -9,4 +9,4 @@ __version__ = "0.1.0"
 
 # import classes
 from velum.classical import LinearRegression
-
+from velum.classical import LogisticRegression
