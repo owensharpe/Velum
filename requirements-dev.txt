@@ -1,0 +1,5 @@
+-r requirements.txt
+
+pytest  # runs tests
+black  # auto-formats code
+ruff  # catches errors and bad patterns

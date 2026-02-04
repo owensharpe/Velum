@@ -53,10 +53,19 @@ pip install -e .
 - PyTorch 2.0+
 - scikit-learn 1.0+
 - numpy
+- pandas
+- matplotlib, seaborn, plotly
+- tqdm
 
 More to be added...
 
-
+## GPU Support (CUDA)
+The default installation uses CPU-only PyTorch. For GPU support, install PyTorch with CUDA separately before installing Velum:
+```bash
+# Example for CUDA 11.8
+pip install torch --index-url https://download.pytorch.org/whl/cu118
+```
+Check [pytorch.org](https://pytorch.org/get-started/locally/) for the right command for your CUDA version.
 
 ## Contributing
 Suggestions and feedback are welcome.
