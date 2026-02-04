@@ -7,7 +7,7 @@ Often, it can be very frustrating to build out models from scratch and attempt t
 I built Velum for a few reasons:
 
 - **Learning By Building**
-  - As a data science and mathematics student, I had the theory down, but wanted deeper fluency with the actual code. The best way to understand an algorithm is by implementing it, breaking it, and fixing it.
+  - As a data science and mathematics student, I had the theory down, but I wanted deeper fluency with the actual code. I figured the best way to understand an algorithm is by implementing it through the code itself.
 
 - **One Interface Overseeing Many Models**
   - Switching between scikit-learn, raw PyTorch, and various other libraries means constantly context-switching between different APIs. Velum will provide a consistent interface whether you're fitting a random forest or training a transformer.
