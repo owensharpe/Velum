@@ -32,6 +32,10 @@ dev = [
     "ruff"
 ]
 
+# explicit package discovery — only build velum, not api
+[tool.setuptools.packages.find]
+include = ["velum*"]
+
 # tool configurations
 [tool.pytest.ini_options]
 testpaths = ["tests"]

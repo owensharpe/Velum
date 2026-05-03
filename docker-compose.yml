@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - velum-storage:/app/api/storage
+    environment:
+      - PYTHONUNBUFFERED=1
+
+volumes:
+  velum-storage:

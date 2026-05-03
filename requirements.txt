@@ -6,3 +6,8 @@ matplotlib
 seaborn
 plotly
 tqdm
+fastapi
+uvicorn[standard]
+sqlmodel
+python-multipart
+joblib
