@@ -60,6 +60,60 @@ model.predict(X_test)
 
 I am also hoping to extend this further with RL and search specific models; this will be on hold for now.
 
+## REST API
+ 
+Velum includes a FastAPI backend that expands the full model library over HTTP. You can upload a dataset, train a model, and get predictions back without writing any code.
+ 
+### Running the API
+ 
+```bash
+# Local development
+make serve
+# API available at http://127.0.0.1:8000
+# Interactive docs at http://127.0.0.1:8000/docs
+ 
+# Docker
+make docker-build
+make docker-up
+```
+ 
+### Endpoints
+ 
+| Group | Endpoint | Description |
+|---|---|---|
+| Datasets | `POST /api/v1/datasets/upload` | Upload a CSV dataset |
+| | `GET /api/v1/datasets` | List all datasets |
+| | `DELETE /api/v1/datasets/{id}` | Delete a dataset |
+| Training | `POST /api/v1/train` | Start a training job |
+| | `GET /api/v1/train/{job_id}/stream` | Stream training progress via SSE |
+| | `GET /api/v1/train/{job_id}` | Poll training job status |
+| Models | `GET /api/v1/models` | List all trained models |
+| | `GET /api/v1/models/available` | List available model classes + hyperparameters |
+| | `DELETE /api/v1/models/{id}` | Delete a trained model |
+| Predictions | `POST /api/v1/models/{id}/predict` | Run predictions on new data |
+ 
+### Example: train a model via the API
+ 
+```bash
+# 1. Upload a dataset
+curl -X POST http://localhost:8000/api/v1/datasets/upload \
+  -F "file=@my_data.csv"
+ 
+# 2. Start training
+curl -X POST http://localhost:8000/api/v1/train \
+  -H "Content-Type: application/json" \
+  -d '{
+    "dataset_id": "<dataset_id>",
+    "model_type": "RandomForest",
+    "target_column": "label",
+    "task": "classification"
+  }'
+ 
+# 3. Get predictions
+curl -X POST http://localhost:8000/api/v1/models/<model_id>/predict \
+  -F "file=@new_data.csv"
+```
+
 ## Installation
 ```bash
 git clone https://github.com/yourusername/velum.git
