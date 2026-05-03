@@ -1,22 +1,22 @@
 """
-Title: logistic_regression.py
+Title: knn.py
 Author: Owen Sharpe
-Description: A sklearn-wrapped class representation of a standard Logistic Regression.
+Description: A sklearn-wrapped class representation of a K-Nearest Neighbors Classifier.
 """
 
 from velum.base import BaseModel
-from sklearn.linear_model import LogisticRegression as SklearnLogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
 
 
-class LogisticRegression(BaseModel):
-    def __init__(self, max_iter=1000):
+class KNN(BaseModel):
+    def __init__(self, n_neighbors=5):
         super().__init__()
-        self.model_name = "Logistic Regression"
-        self.max_iter = max_iter
-        self._model = SklearnLogisticRegression(max_iter=max_iter)
+        self.model_name = "K-Nearest Neighbors"
+        self.n_neighbors = n_neighbors
+        self._model = KNeighborsClassifier(n_neighbors=n_neighbors)
 
     def fit(self, X, y):
-        """Fit the Logistic Regression model to training data.
+        """Fit the KNN classifier to training data.
 
         Args:
             X: Training features, shape (n_samples, n_features)

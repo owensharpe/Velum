@@ -1,21 +1,22 @@
 """
-Title: linear_regression.py
+Title: ridge_regression.py
 Author: Owen Sharpe
-Description: A sklearn-wrapped class representation of a standard Linear Regression.
+Description: A sklearn-wrapped class representation of Ridge Regression (L2 regularization).
 """
 
 from velum.base import BaseModel
-from sklearn.linear_model import LinearRegression as SklearnLinearRegression
+from sklearn.linear_model import Ridge
 
 
-class LinearRegression(BaseModel):
-    def __init__(self):
+class RidgeRegression(BaseModel):
+    def __init__(self, alpha=1.0):
         super().__init__()
-        self.model_name = "Linear Regression"
-        self._model = SklearnLinearRegression()
+        self.model_name = "Ridge Regression"
+        self.alpha = alpha
+        self._model = Ridge(alpha=alpha)
 
     def fit(self, X, y):
-        """Fit the Linear Regression model to training data.
+        """Fit the Ridge Regression model to training data.
 
         Args:
             X: Training features, shape (n_samples, n_features)

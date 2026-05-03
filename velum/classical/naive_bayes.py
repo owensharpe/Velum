@@ -1,22 +1,21 @@
 """
-Title: logistic_regression.py
+Title: naive_bayes.py
 Author: Owen Sharpe
-Description: A sklearn-wrapped class representation of a standard Logistic Regression.
+Description: A sklearn-wrapped class representation of a Gaussian Naive Bayes Classifier.
 """
 
 from velum.base import BaseModel
-from sklearn.linear_model import LogisticRegression as SklearnLogisticRegression
+from sklearn.naive_bayes import GaussianNB
 
 
-class LogisticRegression(BaseModel):
-    def __init__(self, max_iter=1000):
+class NaiveBayes(BaseModel):
+    def __init__(self):
         super().__init__()
-        self.model_name = "Logistic Regression"
-        self.max_iter = max_iter
-        self._model = SklearnLogisticRegression(max_iter=max_iter)
+        self.model_name = "Naive Bayes"
+        self._model = GaussianNB()
 
     def fit(self, X, y):
-        """Fit the Logistic Regression model to training data.
+        """Fit the Naive Bayes classifier to training data.
 
         Args:
             X: Training features, shape (n_samples, n_features)

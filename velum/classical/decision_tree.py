@@ -1,22 +1,30 @@
 """
-Title: logistic_regression.py
+Title: decision_tree.py
 Author: Owen Sharpe
-Description: A sklearn-wrapped class representation of a standard Logistic Regression.
+Description: A sklearn-wrapped class representation of a standard Decision Tree Classifier.
 """
 
 from velum.base import BaseModel
-from sklearn.linear_model import LogisticRegression as SklearnLogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 
 
-class LogisticRegression(BaseModel):
-    def __init__(self, max_iter=1000):
+class DecisionTree(BaseModel):
+    def __init__(self, max_depth=None, min_samples_split=2, min_samples_leaf=1, criterion='gini'):
         super().__init__()
-        self.model_name = "Logistic Regression"
-        self.max_iter = max_iter
-        self._model = SklearnLogisticRegression(max_iter=max_iter)
+        self.model_name = "Decision Tree"
+        self.max_depth = max_depth
+        self.min_samples_split = min_samples_split
+        self.min_samples_leaf = min_samples_leaf
+        self.criterion = criterion
+        self._model = DecisionTreeClassifier(
+            max_depth=max_depth,
+            min_samples_split=min_samples_split,
+            min_samples_leaf=min_samples_leaf,
+            criterion=criterion,
+        )
 
     def fit(self, X, y):
-        """Fit the Logistic Regression model to training data.
+        """Fit the Decision Tree to training data.
 
         Args:
             X: Training features, shape (n_samples, n_features)

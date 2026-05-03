@@ -11,6 +11,11 @@ class BaseModel:
         self.is_fitted = False
         self.model_name = "Base Model"
 
+    def _check_is_fitted(self):
+        """Raise RuntimeError if the model has not been fitted yet."""
+        if not self.is_fitted:
+            raise RuntimeError("Model must be fitted before calling predict()")
+
     def fit(self, X, y):
         """Train the model on a given dataset.
 

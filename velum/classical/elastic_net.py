@@ -1,21 +1,24 @@
 """
-Title: linear_regression.py
+Title: elastic_net.py
 Author: Owen Sharpe
-Description: A sklearn-wrapped class representation of a standard Linear Regression.
+Description: A sklearn-wrapped class representation of Elastic Net Regression (L1 + L2 regularization).
 """
 
 from velum.base import BaseModel
-from sklearn.linear_model import LinearRegression as SklearnLinearRegression
+from sklearn.linear_model import ElasticNet
 
 
-class LinearRegression(BaseModel):
-    def __init__(self):
+class ElasticNetRegression(BaseModel):
+    def __init__(self, alpha=1.0, l1_ratio=0.5, max_iter=1000):
         super().__init__()
-        self.model_name = "Linear Regression"
-        self._model = SklearnLinearRegression()
+        self.model_name = "Elastic Net"
+        self.alpha = alpha
+        self.l1_ratio = l1_ratio
+        self.max_iter = max_iter
+        self._model = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, max_iter=max_iter)
 
     def fit(self, X, y):
-        """Fit the Linear Regression model to training data.
+        """Fit the Elastic Net model to training data.
 
         Args:
             X: Training features, shape (n_samples, n_features)

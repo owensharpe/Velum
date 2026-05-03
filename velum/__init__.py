@@ -7,6 +7,27 @@ Velum is a unified machine learning library.
 
 __version__ = "0.1.0"
 
-# import classes
-from velum.classical import LinearRegression
-from velum.classical import LogisticRegression
+from velum.classical import (
+    LinearRegression,
+    LogisticRegression,
+    DecisionTree,
+    RandomForest,
+    KNN,
+    SVM,
+    NaiveBayes,
+    GradientBoosting,
+    RidgeRegression,
+    LassoRegression,
+    ElasticNetRegression,
+    KMeans,
+    PCA,
+)
+
+from velum.deep import (
+    MLP,
+    AutoEncoder,
+    LSTM,
+    CNN,
+    Transformer,
+    TabTransformer,
+)

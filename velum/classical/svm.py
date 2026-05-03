@@ -1,22 +1,23 @@
 """
-Title: logistic_regression.py
+Title: svm.py
 Author: Owen Sharpe
-Description: A sklearn-wrapped class representation of a standard Logistic Regression.
+Description: A sklearn-wrapped class representation of a Support Vector Machine Classifier.
 """
 
 from velum.base import BaseModel
-from sklearn.linear_model import LogisticRegression as SklearnLogisticRegression
+from sklearn.svm import SVC
 
 
-class LogisticRegression(BaseModel):
-    def __init__(self, max_iter=1000):
+class SVM(BaseModel):
+    def __init__(self, kernel='rbf', C=1.0):
         super().__init__()
-        self.model_name = "Logistic Regression"
-        self.max_iter = max_iter
-        self._model = SklearnLogisticRegression(max_iter=max_iter)
+        self.model_name = "Support Vector Machine"
+        self.kernel = kernel
+        self.C = C
+        self._model = SVC(kernel=kernel, C=C)
 
     def fit(self, X, y):
-        """Fit the Logistic Regression model to training data.
+        """Fit the SVM to training data.
 
         Args:
             X: Training features, shape (n_samples, n_features)

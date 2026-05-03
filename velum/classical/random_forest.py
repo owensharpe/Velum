@@ -1,22 +1,28 @@
 """
-Title: logistic_regression.py
+Title: random_forest.py
 Author: Owen Sharpe
-Description: A sklearn-wrapped class representation of a standard Logistic Regression.
+Description: A sklearn-wrapped class representation of a Random Forest Classifier.
 """
 
 from velum.base import BaseModel
-from sklearn.linear_model import LogisticRegression as SklearnLogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 
 
-class LogisticRegression(BaseModel):
-    def __init__(self, max_iter=1000):
+class RandomForest(BaseModel):
+    def __init__(self, n_estimators=100, max_depth=None, random_state=None):
         super().__init__()
-        self.model_name = "Logistic Regression"
-        self.max_iter = max_iter
-        self._model = SklearnLogisticRegression(max_iter=max_iter)
+        self.model_name = "Random Forest"
+        self.n_estimators = n_estimators
+        self.max_depth = max_depth
+        self.random_state = random_state
+        self._model = RandomForestClassifier(
+            n_estimators=n_estimators,
+            max_depth=max_depth,
+            random_state=random_state,
+        )
 
     def fit(self, X, y):
-        """Fit the Logistic Regression model to training data.
+        """Fit the Random Forest to training data.
 
         Args:
             X: Training features, shape (n_samples, n_features)

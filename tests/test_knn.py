@@ -1,12 +1,12 @@
 """
-Title: test_logistic_regression.py
+Title: test_knn.py
 Author: Owen Sharpe
-Description: Tests for the LogisticRegression class - fit, predict shape, score range, and unfitted error.
+Description: Tests for the KNN class - fit, predict shape, score range, and unfitted error.
 """
 
 import numpy as np
 import pytest
-from velum.classical.logistic_regression import LogisticRegression
+from velum.classical.knn import KNN
 
 
 def _make_data():
@@ -18,7 +18,7 @@ def _make_data():
 
 def test_fit():
     X, y = _make_data()
-    model = LogisticRegression()
+    model = KNN(n_neighbors=3)
     result = model.fit(X, y)
     assert model.is_fitted
     assert result is model
@@ -26,20 +26,20 @@ def test_fit():
 
 def test_predict_shape():
     X, y = _make_data()
-    model = LogisticRegression().fit(X, y)
+    model = KNN(n_neighbors=3).fit(X, y)
     pred = model.predict(X)
     assert pred.shape == y.shape
 
 
 def test_score():
     X, y = _make_data()
-    model = LogisticRegression().fit(X, y)
+    model = KNN(n_neighbors=3).fit(X, y)
     score = model.score(X, y)
     assert isinstance(score, float)
     assert 0.0 <= score <= 1.0
 
 
 def test_predict_before_fit():
-    model = LogisticRegression()
+    model = KNN()
     with pytest.raises(RuntimeError):
         model.predict(np.array([[1, 0]]))
