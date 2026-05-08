@@ -114,6 +114,10 @@ curl -X POST http://localhost:8000/api/v1/models/<model_id>/predict \
   -F "file=@new_data.csv"
 ```
 
+## Frontend
+
+The frontend adaption to include the chatbot interface is a work in progress.
+
 ## Installation
 ```bash
 git clone https://github.com/yourusername/velum.git
