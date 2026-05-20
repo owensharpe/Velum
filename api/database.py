@@ -42,6 +42,22 @@ class TrainedModel(SQLModel, table=True):
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
 
+class ChatSession(SQLModel, table=True):
+    id: str = Field(primary_key=True)
+    active_dataset_id: Optional[str] = Field(default=None, foreign_key="dataset.id")
+    active_job_id: Optional[str] = Field(default=None, foreign_key="trainingjob.id")
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class ChatMessage(SQLModel, table=True):
+    id: str = Field(primary_key=True)
+    session_id: str = Field(foreign_key="chatsession.id")
+    role: str  # user | assistant | tool
+    content: str  # JSON
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
 
