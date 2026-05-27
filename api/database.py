@@ -1,3 +1,11 @@
+"""
+Title: database.py
+Author: Owen Sharpe
+Description: SQLModel table definitions and SQLite engine for the Velum API,
+covering the Dataset, TrainingJob, TrainedModel, ChatSession, and ChatMessage
+entities along with the get_session() FastAPI dependency.
+"""
+
 import json
 from datetime import datetime
 from typing import Optional

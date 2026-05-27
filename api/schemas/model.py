@@ -1,3 +1,11 @@
+"""
+Title: model.py
+Author: Owen Sharpe
+Description: Pydantic schemas for trained-model list/detail responses, the
+available-models catalog (including hyperparameter descriptors), and the
+prediction response shape.
+"""
+
 from pydantic import BaseModel
 
 

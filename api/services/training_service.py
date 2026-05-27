@@ -1,3 +1,11 @@
+"""
+Title: training_service.py
+Author: Owen Sharpe
+Description: Background trainer that instantiates a model from the velum
+package, fits it, scores it, pickles the estimator to MODELS_DIR, and emits
+per-epoch progress events for deep models via an in-process progress store.
+"""
+
 import json
 import os
 import uuid

@@ -1,3 +1,11 @@
+"""
+Title: models.py
+Author: Owen Sharpe
+Description: FastAPI router for trained-model list/detail/delete and the
+static AVAILABLE_MODELS catalog that describes every supported model and
+its hyperparameters to the frontend and the chat LLM.
+"""
+
 import json
 
 import joblib

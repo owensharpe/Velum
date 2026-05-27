@@ -1,3 +1,10 @@
+"""
+Title: dataset.py
+Author: Owen Sharpe
+Description: Pydantic schemas for the datasets API, covering column metadata,
+the upload response with a preview, and the list/detail views.
+"""
+
 from pydantic import BaseModel
 
 

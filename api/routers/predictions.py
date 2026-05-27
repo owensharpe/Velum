@@ -1,3 +1,11 @@
+"""
+Title: predictions.py
+Author: Owen Sharpe
+Description: FastAPI router exposing POST /api/v1/models/{model_id}/predict,
+which loads the joblib-pickled estimator and runs inference over an
+uploaded CSV.
+"""
+
 import io
 
 import joblib

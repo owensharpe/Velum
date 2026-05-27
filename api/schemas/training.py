@@ -1,3 +1,10 @@
+"""
+Title: training.py
+Author: Owen Sharpe
+Description: Pydantic schemas for the training API, covering the submission
+request, the start ack, and the job-status poll response.
+"""
+
 from pydantic import BaseModel
 
 

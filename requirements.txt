@@ -6,8 +6,12 @@ matplotlib
 seaborn
 plotly
 tqdm
-fastapi
+fastapi~=0.136.1
 uvicorn[standard]
-sqlmodel
+sqlmodel~=0.0.38
 python-multipart
-joblib
+joblib~=1.5.3
+pydantic~=2.13.3
+pytest~=9.0.3
+velum~=0.1.0
+python-dotenv~=1.2.2

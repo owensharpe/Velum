@@ -60,9 +60,17 @@ model.predict(X_test)
 
 I am also hoping to extend this further with RL and search specific models; this will be on hold for now.
 
+## Architecture
+
+Velum is built in three layers:
+
+1. **Core Library (`velum/`)** — 19 models across classical and deep learning, accessible through a uniform `fit` / `predict` / `score` interface.
+2. **REST API (`api/`)** — a FastAPI backend that exposes the library over HTTP, with routers for datasets, training, predictions, models, and chat.
+3. **Frontend (in progress)** — a React app that will sit on top of the API and chat layer to enable fully no-code ML workflows.
+
 ## REST API
  
-Velum includes a FastAPI backend that expands the full model library over HTTP. You can upload a dataset, train a model, and get predictions back without writing any code.
+Velum includes a FastAPI backend that exposes the full model library over HTTP. You can upload a dataset, train a model, and get predictions back without writing any code.
  
 ### Running the API
  
@@ -91,6 +99,7 @@ make docker-up
 | | `GET /api/v1/models/available` | List available model classes + hyperparameters |
 | | `DELETE /api/v1/models/{id}` | Delete a trained model |
 | Predictions | `POST /api/v1/models/{id}/predict` | Run predictions on new data |
+| Chat | `POST /api/v1/chat` | Send a message; creates a new session if `session_id` is omitted |
  
 ### Example: train a model via the API
  
@@ -114,9 +123,21 @@ curl -X POST http://localhost:8000/api/v1/models/<model_id>/predict \
   -F "file=@new_data.csv"
 ```
 
+### Chat Interface
+
+The chat layer wraps the REST API in a natural-language interface powered by Gemini 2.5 Flash with function calling. The model translates user intent ("show me my datasets", "train a random forest on the iris data") into the underlying tool calls, and every turn is persisted to the session so conversations stay resumable across restarts.
+
+```bash
+curl -X POST http://localhost:8000/api/v1/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message": "what datasets do I have?"}'
+```
+
+The Gemini API key is read from `GEMINI_API_KEY` in your environment (or a `.env` file at the project root).
+
 ## Frontend
 
-The frontend adaption to include the chatbot interface is a work in progress.
+A React frontend wrapping the REST API and chat layer is in progress.
 
 ## Installation
 ```bash

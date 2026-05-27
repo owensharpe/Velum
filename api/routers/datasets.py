@@ -1,3 +1,10 @@
+"""
+Title: datasets.py
+Author: Owen Sharpe
+Description: FastAPI router for user-uploaded datasets under /api/v1/datasets,
+exposing CSV upload, list, detail, and delete endpoints.
+"""
+
 import json
 
 from fastapi import APIRouter, Depends, HTTPException, UploadFile

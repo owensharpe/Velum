@@ -1,3 +1,11 @@
+"""
+Title: training.py
+Author: Owen Sharpe
+Description: FastAPI router for kicking off model training as a background
+task and observing progress via a Server-Sent Events stream or a status
+poll endpoint.
+"""
+
 import asyncio
 import json
 import uuid

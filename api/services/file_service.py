@@ -1,3 +1,10 @@
+"""
+Title: file_service.py
+Author: Owen Sharpe
+Description: On-disk storage helpers for uploaded CSV datasets and pickled
+trained models, plus DataFrame column-metadata extraction.
+"""
+
 import json
 import os
 import uuid

@@ -1,10 +1,21 @@
+"""
+Title: main.py
+Author: Owen Sharpe
+Description: FastAPI application entrypoint that wires up CORS, registers the
+chat / datasets / training / models / predictions routers, and on startup
+creates the SQLite tables plus on-disk storage directories.
+"""
+
+from dotenv import load_dotenv
+load_dotenv()
+
 import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from api.database import create_db_and_tables
-from api.routers import datasets, models, predictions, training
+from api.routers import chat, datasets, models, predictions, training
 
 app = FastAPI(title="Velum ML Platform API", version="0.1.0")
 
@@ -16,6 +27,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(chat.router)
 app.include_router(datasets.router)
 app.include_router(training.router)
 app.include_router(models.router)
