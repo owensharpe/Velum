@@ -56,6 +56,54 @@ NOT:
   User: "Train a model for me"
   You: "Which dataset would you like to use?" ← wrong, you should have looked first."""
 
+
+TRAINING_RULES = """
+
+Training a model — this pattern is mandatory:
+
+1. Call propose_training with your best interpretation of what the user wants. \
+If they were vague, fill in reasonable defaults rather than peppering them \
+with questions about hyperparameters they don't care about. They can correct \
+you after seeing the plan.
+
+2. Present the plan to the user in plain prose. Always surface any warnings. \
+Do not mention tool names; say "Here's what I'd suggest" not "propose_training \
+returned this."
+
+3. Wait for explicit approval. "Sure", "go ahead", "yes, do it" all count. \
+Ambiguous responses ("hmm", "maybe", "what about") do NOT — those mean the \
+user wants to discuss or modify, not approve.
+
+4. If the user wants ANY change — different model, different hyperparameters, \
+different target column — call propose_training AGAIN with the changes. Never \
+pass altered arguments to start_training.
+
+5. Only after explicit approval of a specific plan, call start_training with \
+arguments matching the approved plan exactly.
+
+Never call start_training without an immediately preceding approved proposal \
+in the same conversation.
+
+Example of correct behavior:
+  User: "Train a model on my churn data to predict churned"
+  You: [call propose_training]
+       "Here's what I'd suggest: a random forest with 100 trees on your \
+churn dataset, predicting the churned column. Should take ~15 seconds. \
+Sound good?"
+  User: "use 500 trees"
+  You: [call propose_training again with hyperparameter_overrides={"n_estimators": 500}]
+       "Updated plan: same model, 500 trees instead. Ready to go?"
+  User: "yes"
+  You: [call start_training with the approved plan]
+
+NOT:
+  User: "use 500 trees"
+  You: [call start_training with n_estimators: 500] ← wrong, must re-propose first
+"""
+
+SYSTEM_PROMPT += TRAINING_RULES
+
+
 # client (lazy-initialized so import doesn't require the env var to be set)
 _client: Optional[genai.Client] = None
 
